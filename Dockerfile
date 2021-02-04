@@ -16,7 +16,7 @@ WORKDIR /ocean-provider
 
 RUN python3.8 -m pip install setuptools
 RUN python3.8 -m pip install .
-
+# set folder permissions
 RUN chown -R 1000:1000 /ocean-provider
 # config.ini configuration file variables
 ENV NETWORK_URL='http://127.0.0.1:8545'
