@@ -1,3 +1,7 @@
+##
+## Copyright 2021 Ocean Protocol Foundation
+## SPDX-License-Identifier: Apache-2.0
+##
 name: Provider tests
 
 on:
@@ -18,15 +22,11 @@ jobs:
         name: Checkout Barge
         with:
           repository: "oceanprotocol/barge"
-          ref: 'v3'
           path: 'barge'
-        env:
-          AQUARIUS_VERSION: 'v3'
-          CONTRACTS_VERSION: latest
       - name: Run Barge
         working-directory: ${{ github.workspace }}/barge
         run: |
-          bash -x start_ocean.sh --no-dashboard --no-provider 2>&1 > start_ocean.log &
+          bash -x start_ocean.sh --no-provider --no-dashboard 2>&1 > start_ocean.log &
           for i in $(seq 1 50); do
             sleep 5
             [ -f "$HOME/.ocean/ocean-contracts/artifacts/ready" ] && break
@@ -40,3 +40,8 @@ jobs:
       - name: Test with tox
         working-directory: ${{ github.workspace }}
         run: tox
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+            project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+            coverage-reports: /github/workspace/coverage.xml
