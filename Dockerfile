@@ -1,3 +1,7 @@
+##
+## Copyright 2021 Ocean Protocol Foundation
+## SPDX-License-Identifier: Apache-2.0
+##
 FROM ubuntu:18.04
 LABEL maintainer="Ocean Protocol <devops@oceanprotocol.com>"
 
@@ -47,6 +51,7 @@ ENV OCEAN_PROVIDER_URL='http://0.0.0.0:8030'
 # docker-entrypoint.sh configuration file variables
 ENV OCEAN_PROVIDER_WORKERS='1'
 ENV OCEAN_PROVIDER_TIMEOUT='9000'
+ENV ALLOW_NON_PUBLIC_IP=False
 
 ENTRYPOINT ["/ocean-provider/docker-entrypoint.sh"]
 

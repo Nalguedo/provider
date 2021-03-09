@@ -1,9 +1,17 @@
+<!--
+Copyright 2021 Ocean Protocol Foundation
+SPDX-License-Identifier: Apache-2.0
+-->
+[![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/286c8284fd0140d294d0933f6578b3ad)](https://www.codacy.com/gh/oceanprotocol/provider/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oceanprotocol/provider&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/286c8284fd0140d294d0933f6578b3ad)](https://www.codacy.com/gh/oceanprotocol/provider/dashboard?utm_source=github.com&utm_medium=referral&utm_content=oceanprotocol/provider&utm_campaign=Badge_Coverage)  [![GitHub contributors](https://img.shields.io/github/contributors/oceanprotocol/provider.svg)](https://github.com/oceanprotocol/provider/graphs/contributors)
+
 # provider
 REST API for provider of data services
 
 This is part of the Ocean Protocol V3 tools.
 
-This is feature complete and is a BETA version.  
+This is feature complete and is a BETA version.
 
 ## Starting the server locally
 
@@ -14,7 +22,7 @@ Uses the rinkeby network with a remote metadatastore instance running at https:/
 git clone git@github.com:oceanprotocol/provider.git
 cd provider/
 
-virtualenv venv -p python3.6
+virtualenv venv -p python3.8
 source venv/bin/activate
 
 pip install -r requirements_dev.txt
@@ -36,7 +44,7 @@ cd provider/
 Before running it locally we recommend to set up virtual environment:
 
 ```bash
-virtualenv venv -p python3.6
+virtualenv venv -p python3.8
 # OR: python -m venv venv
 source venv/bin/activate
 ```
@@ -83,8 +91,7 @@ You might also want to set `FLASK_ENV=development`. Then run ```flask run --port
 
 Refer to the [API.md](API.md) file for endpoints and payloads.
 
-#### Installing the git pre-commit hook (recommended)
-`flake8 --install-hook git`
-`git config --bool flake8.strict true`
+#### Before you commit
+If you are a contributor, make sure you install the pre-commit hooks using the command `pre-commit install`. This will make sure your imports are sorted and your code is properly formatted before committing. We use `black`, `isort` and `flake8` to keep code clean.
 
-You can also run isort to order imports `isort {file_path}`
+Licensing your commits is also available: use the command `licenseheaders -t .copyright.tmpl -x venv` (or replace "venv" with your local virtual environment path). This option is not available as a precommit since it takes longer.
